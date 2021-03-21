@@ -10,17 +10,20 @@ import java.security.GeneralSecurityException;
 import static authentication.ConnectionFactory.createSheetsService;
 import static logging.Log.LOGGER;
 
-public interface ManipulateSheet extends CalculateSituation {
+public interface ManipulateSheet {
 
 	//Method that reads data from sheet
-	public static void readSheet(Subject sheet) throws IOException, GeneralSecurityException {
+	static void readSheet (Subject sheet) throws IOException, GeneralSecurityException {
 		LOGGER.info("Reading data...");
+		//Reads data
 		ValueRange result = createSheetsService().spreadsheets().values().get(sheet.getSpreadSheetId(), sheet.getReadRange()).execute();
-		sheet.setDataCollected(result.getValues());
+		//Sets data collected to subject's attributes
+		sheet.setClasses(result.getValues().get(0));
+		sheet.setStudentsData(result.getValues().subList(2, result.getValues().size()));
 	}
 
 	//Method that writes data on sheet
-	public static void updateSheet(Subject sheet) throws IOException, GeneralSecurityException {
+	static void updateSheet (Subject sheet) throws IOException, GeneralSecurityException {
 		LOGGER.info("Updating sheet...");
 		ValueRange data = new ValueRange().setValues(sheet.getDataToWrite());
 		UpdateValuesResponse write = createSheetsService()

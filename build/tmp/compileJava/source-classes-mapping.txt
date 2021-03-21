@@ -1,12 +1,12 @@
-functions/CalculateSituation.java
- functions.CalculateSituation
-functions/ManipulateSheet.java
- functions.ManipulateSheet
-Main.java
- Main
 logging/Log.java
  logging.Log
 authentication/ConnectionFactory.java
  authentication.ConnectionFactory
+functions/ManipulateSheet.java
+ functions.ManipulateSheet
 pojo/Subject.java
  pojo.Subject
+functions/CalculateSituation.java
+ functions.CalculateSituation
+Main.java
+ Main
